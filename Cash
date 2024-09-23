@@ -1,0 +1,60 @@
+from cs50 import get_float
+
+
+def main():
+    while True:
+        changeOwed = get_float("What is the amount of change owed? ")
+        if changeOwed >= 0:
+            break
+
+    changeOwed = changeOwed * 100
+
+    quarters = calculate_quarters(changeOwed)
+    changeOwed = changeOwed - (quarters * 25)
+
+    dimes = calculate_dimes(changeOwed)
+    changeOwed = changeOwed - (dimes * 10)
+
+    nickels = calculate_nickels(changeOwed)
+    changeOwed = changeOwed - (nickels * 5)
+
+    cents = calculate_cents(changeOwed)
+    changeOwed = changeOwed - (cents * 1)
+
+    coinSum = quarters + dimes + nickels + cents
+    print(coinSum)
+
+
+def calculate_quarters(changeOwed):
+    quarters = 0
+    while changeOwed >= 25:
+        quarters += 1
+        changeOwed = changeOwed - 25
+    return quarters
+
+
+def calculate_dimes(changeOwed):
+    dimes = 0
+    while changeOwed >= 10:
+        dimes += 1
+        changeOwed = changeOwed - 10
+    return dimes
+
+
+def calculate_nickels(changeOwed):
+    nickels = 0
+    while changeOwed >= 5:
+        nickels += 1
+        changeOwed = changeOwed - 5
+    return nickels
+
+
+def calculate_cents(changeOwed):
+    cents = 0
+    while changeOwed >= 1:
+        cents += 1
+        changeOwed = changeOwed - 1
+    return cents
+
+
+main()
